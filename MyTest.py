@@ -1,7 +1,8 @@
-from MyTestCase import MyTestCase
-from MyTestSuite import MyTestSuite
+from TestCase import TestCase
+from TestSuite import TestSuite
+from TestResult import TestResult
 
-class MyTest(MyTestCase):
+class MyTest(TestCase):
 
     def set_up(self):
         print('set_up')
@@ -18,18 +19,26 @@ class MyTest(MyTestCase):
     def test_c(self):
         print('test_c')
 
+result = TestResult()
+
 test1 = MyTest('test_a')
-test1.run()
+test1.run(result)
 
 test2 = MyTest('test_b')
-test2.run()
+test2.run(result)
 
 test3 = MyTest('test_c')
-test3.run()
+test3.run(result)
 
-suite = MyTestSuite()
+print(result.summary())
+
+suiteResult = TestResult()
+
+suite = TestSuite()
 suite.add(test1)
 suite.add(test2)
 suite.add(test3)
 
-suite.run()
+suite.run(suiteResult)
+
+print(suiteResult.summary())

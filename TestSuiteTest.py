@@ -52,4 +52,4 @@ suite.add_test(TestSuiteTest('test_suite_success_run'))
 suite.add_test(TestSuiteTest('test_suite_multiple_run'))
 
 suite.run(result)
-print(result.summary())
+#print(result.summary())

@@ -43,10 +43,10 @@ result = TestResult()
 loader = TestLoader()
 suite = loader.make_suite(TestLoaderTest)
 suite.run(result)
-print(result.summary())
+#print(result.summary())
 
 loader = TestLoader()
 suite = loader.make_suite(TestLoaderTest)
 
 runner = TestRunner()
-runner.run(suite)
+#runner.run(suite)

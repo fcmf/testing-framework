@@ -30,7 +30,7 @@ test2.run(result)
 test3 = MyTest('test_c')
 test3.run(result)
 
-print(result.summary())
+#print(result.summary())
 
 suiteResult = TestResult()
 

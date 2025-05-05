@@ -78,4 +78,4 @@ test.run(result)
 test = TestCaseTest('test_template_method')
 test.run(result)
 
-print(result.summary())
+#print(result.summary())

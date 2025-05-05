@@ -3,6 +3,9 @@ from TestStub import TestStub
 from TestResult import TestResult
 from TestSpy import TestSpy
 
+from TestLoader import TestLoader
+from TestRunner import TestRunner
+
 class TestCaseTest(TestCase):
 
     def set_up(self):
@@ -51,31 +54,33 @@ class TestCaseTest(TestCase):
         spy = TestSpy('test_method')
         spy.run(self.result)
         assert spy.log == "set_up test_method tear_down"
+    
+    def test_assert_true(self):
+        self.assert_true(True)
 
-result = TestResult()
+    def test_assert_false(self):
+        self.assert_false(False)
 
-test = TestCaseTest('test_result_success_run')
-test.run(result)
+    def test_assert_equal(self):
+        self.assert_equal("", "")
+        self.assert_equal("foo", "foo")
+        self.assert_equal([], [])
+        self.assert_equal(['foo'], ['foo'])
+        self.assert_equal((), ())
+        self.assert_equal(('foo',), ('foo',))
+        self.assert_equal({}, {})
+        self.assert_equal({'foo'}, {'foo'})
 
-test = TestCaseTest('test_result_failure_run')
-test.run(result)
+    def test_assert_in(self):
+        animals = {'monkey': 'banana', 'cow': 'grass', 'seal': 'fish'}
 
-test = TestCaseTest('test_result_error_run')
-test.run(result)
+        self.assert_in('a', 'abc')
+        self.assert_in('foo', ['foo'])
+        self.assert_in(1, [1, 2, 3])
+        self.assert_in('monkey', animals)
 
-test = TestCaseTest('test_result_multiple_run')
-test.run(result)
+loader = TestLoader()
+suite = loader.make_suite(TestCaseTest)
 
-test = TestCaseTest('test_was_set_up')
-test.run(result)
-
-test = TestCaseTest('test_was_run')
-test.run(result)
-
-test = TestCaseTest('test_was_tear_down')
-test.run(result)
-
-test = TestCaseTest('test_template_method')
-test.run(result)
-
-#print(result.summary())
+runner = TestRunner()
+runner.run(suite)

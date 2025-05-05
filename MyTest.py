@@ -35,9 +35,9 @@ print(result.summary())
 suiteResult = TestResult()
 
 suite = TestSuite()
-suite.add(test1)
-suite.add(test2)
-suite.add(test3)
+suite.add_test(test1)
+suite.add_test(test2)
+suite.add_test(test3)
 
 suite.run(suiteResult)
 
